@@ -4,9 +4,51 @@ for (let i = 5; i >= 1; i--) {
 }
 
 /* Variables globales */ 
-//CARRITO VACIO
 
-const carrito = [];
+//CARRITO 
+
+const carrito = [
+    {
+        marca: "Fiat",
+        modelo: 1993,
+        color: "rojo",
+        disponibilidad: true
+    },
+    {
+        marca: "Fiat",
+        modelo: 2012,
+        color: "blanco",
+        disponibilidad: false
+    },
+    {
+        marca: "Ford",
+        modelo: 2022,
+        color: "azul",
+        disponibilidad: true
+    },
+    {
+        marca: "Marcedez Beanz",
+        modelo: 2015,
+        color: "negro",
+        disponibilidad: false
+    }
+];
+
+// Esta variable va a imprimir los nombres que estan dentro del objeto
+
+let vehiculosTotales = carrito.map(
+    function(autos){
+        return `${autos.marca} ${autos.modelo} ||`;
+    }
+    );
+
+alert(`Vehiculos que vendemos son: ${vehiculosTotales}`);
+
+// esta variable demuestra la cantidad de autos disponible dentro de mi objetos
+
+let disponibilidadVehicular = carrito.filter(auto => auto.disponibilidad == true);
+console.log(disponibilidadVehicular);
+
 let nombre = prompt("Ingrese su nombre");
 let apellido = prompt("Ingrese su apellido");
 
