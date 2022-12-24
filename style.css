@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul li a{
+    color: #FFBF00 !important;
+}
+ul li:hover{
+    transition: all 2s;
+}
+ul li a:hover{   
+    color: beige !important;
+}
+section{
+    background-color: #383838;
+}
+.primer_section{
+    height: 500px;
+    background-image: url(./img/pexels-chris-f-1283219.jpg);
+    background-size: cover;
+    background-position-y: center;
+    display: flex;
+}
+.frase{
+    display: flex;
+    flex-direction: column;
+}
+.buscador{
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center !important;
+    margin: auto;
+    width: 50% !important;
+}
+h1{
+    font-weight: bolder !important;
+    color: #FFBF00;  
+    text-shadow: 1px 1px 2px #171616; 
+}
+.frase span{
+    color: #FFBF00;
+    font-weight: bolder !important;
+    text-align: right;
+    padding-right: 50px;
+    text-shadow: 1px 1px 2px #171616; 
+}
+.logo{
+    margin-left: 50px;
+    width: 150px;
+}
+.segunda_section{
+    display: flex;
+    flex-direction: column;
+    background-color: #383838;
+}
+.list{
+    margin: 20px;
+}
+.productos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+form label{
+    color: #FFBF00;
+}
+.form-formato{
+    width: 50%;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+footer{
+    background-color: #383838;
+}
+footer a{
+    color: #FFBF00;
+    text-decoration: none;
+    transition: all 2s;
+}
+footer a:hover{
+    color: beige;
+}
+.linksFooter{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
