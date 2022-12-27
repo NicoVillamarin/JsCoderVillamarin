@@ -33,8 +33,21 @@ const mercaderia = [
         disponibilidad: true
     }
 ];
+
+// LocalStorage 
+
+/*
 const objJson = JSON.stringify(mercaderia);
 console.log(objJson);
+
+localStorage.setItem("Mercaderias", objJson);
+*/
+
+// recuperacion LocalStorage
+
+const RecMercaderia = JSON.parse(localStorage.getItem("Mercaderias"))
+
+
 // Esta variable va a imprimir los nombres que estan dentro del objeto
 
 /*let bebidasTotales = mercaderia.map(
@@ -151,7 +164,7 @@ function leerDatosProducto(producto){
     carrotoHTML();
 }
 
-const carrito = document.querySelector("#carrito");
+const carritoAgregar = document.querySelector("#carrito");
 
 function carrotoHTML(){
     limpiarHTML();
@@ -163,24 +176,53 @@ function carrotoHTML(){
         <p>${producto.texto}</p>
         <button class="btn btn-danger borrar" id=${producto.id}>Eliminar</button>
         `;
-        carrito.appendChild(row);
+        carritoAgregar.appendChild(row);
+        Eliminar(producto);
     })
 };
 
 function limpiarHTML(){
-    carrito.innerHTML = "";
+    carritoAgregar.innerHTML = "";
 };
 
 // boton eliminar
+function Eliminar(producto) {
+    const eliminarCarrito = document.querySelector(".btn-danger");
 
-const eliminarCarrito = document.querySelector("btn-danger");
+    if(eliminarCarrito){
+        eliminarCarrito.addEventListener("click", (e)=>{
+            console.log(e.target.id)
+            producto.splice(1, 0);
+        });
+    };
+};
 
+// evento tipo imput
 
-if(eliminarCarrito){
-    
-    eliminarCarrito.addEventListener("click", (e)=>{
-    console.log(e.target.id);
-    
-    })
-}
+const FormCorreo = document.querySelector("#correo");
+const FormNombre = document.querySelector("#nombre");
 
+FormNombre.addEventListener("input", function(){
+    if(FormNombre.value === ""){
+        
+    }
+})
+
+FormCorreo.addEventListener("input", function(){
+    if(FormCorreo.value === ""){
+
+    }
+})
+
+let formulario = document.querySelector("#formulario");
+let alerta = document.querySelector(".alerta");
+
+const MostrarData = formulario.addEventListener("submit", function(e){
+    e.preventDefault();
+    alerta.innerHTML = `
+    <div class="alert alert-warning" role="alert">
+        ¡¡Muchas gracias ${FormNombre.value}!! Enseguida respoderemos a tus dudas a traves de tu mail en la cual es ${FormCorreo.value}
+    </div>
+    `
+    ;
+})

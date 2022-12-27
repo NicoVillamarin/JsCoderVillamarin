@@ -51,6 +51,7 @@
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Carrito 🛒
+                <span class="badge text-bg-warning" id="cant">4</span>
               </button>
               <ul class="dropdown-menu">
                 <li class="dropdown-item">
@@ -100,14 +101,14 @@
 
         </section>
         <section class="d-flex justify-content-center align-items-center">
-          <form class="row g-3 form-formato">
+          <form class="row g-3 form-formato" id="formulario">
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail4">
+              <input type="email" class="form-control" id="correo">
             </div>
             <div class="col-md-6">
-              <label for="inputPassword4" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="inputPassword4">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre">
             </div>
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
@@ -116,8 +117,13 @@
             <div class="col-12 d-flex justify-content-center align-items-center">
               <button type="submit" class="btn btn-warning">Sign in</button>
             </div>
+            <div class="alerta col-12 d-flex justify-content-center align-items-center">
+
+            </div>
           </form>
+          
         </section>
+        
     </main>
     <footer>
       <div class="linksFooter">
