@@ -177,7 +177,7 @@ function carrotoHTML(){
         <button class="btn btn-danger borrar" id=${producto.id}>Eliminar</button>
         `;
         carritoAgregar.appendChild(row);
-        Eliminar(producto);
+        Eliminar();
     })
 };
 
@@ -187,14 +187,19 @@ function limpiarHTML(){
 
 // boton eliminar
 function Eliminar(producto) {
-    const eliminarCarrito = document.querySelector(".btn-danger");
+    let eliminarCarrito = document.querySelector(".btn-danger");
 
     if(eliminarCarrito){
         eliminarCarrito.addEventListener("click", (e)=>{
+            eliminarCarrito = (id) => {
+                const producto = carrito.find((producto) => producto.id === e.target.id);
+                carrito.splice(carrito.indexOf(producto), 1);
+            };
             console.log(e.target.id)
-            producto.splice(1, 0);
         });
+
     };
+    
 };
 
 // evento tipo imput
