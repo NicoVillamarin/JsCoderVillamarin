@@ -6,42 +6,30 @@
 /* Variables globales */ 
 
 //CARRITO 
-
-const mercaderia = [
-    {
-        id: 1,
-        marca: "Fernet Branca",
-        precio: 2500,
-        disponibilidad: true
-    },
-    {
-        id: 2,
-        marca: "Vino La trinidad",
-        precio: 3500,
-        disponibilidad: true
-    },
-    {
-        id: 3,
-        marca: "Vino Tero rengo",
-        precio: 6000,
-        disponibilidad: true
-    },
-    {
-        id: 4,
-        marca: "Vino Estancia mendoza",
-        precio: 1500,
-        disponibilidad: true
+class Producto {
+    constructor(id, marca, precio, descripcion, cantidad){
+        this.id = id;
+        this.marca = marca;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
     }
-];
+}
+const producto1 = new Producto(1, "Tero Rengo", 6500, "Tero Rengo Malbec es la línea joven de la bodega donde se resaltan los aromas frutados y florales del varietal.", 5);
+const producto2 = new Producto(2, "Fernet Branca", 3500, "Fernet Branca es un licor de origen italiano específicamente en la ciudad de Milán (1845), inventado por Bernardino Branca, elaborado en función de la fórmula secreta de las distintas generaciones de la familia Branca, donde combina 27 hierbas provenientes de los cinco continentes.", 5);
+const producto3 = new Producto(3, "Santa Julia", 4500, "Es un vino suave y delicado, de color amarillo verdoso y aromas que recuerdan a durazno blanco, damasco, hierbas frescas y algunas notas cítricas como limón y pomelo.", 5);
+const producto4 = new Producto(4, "Don juan", 10500, "Color rojo profundo, con trazos violetas. Intensos aromas de frutas rojas, con matices de pimienta, especias, violeta y ciruela seca, conjugados con notas de tabaco, chocolate y vainilla.",5);
+
+const mercaderia = [producto1, producto2, producto3, producto4];
 
 // LocalStorage 
 
-/*
+
 const objJson = JSON.stringify(mercaderia);
 console.log(objJson);
 
 localStorage.setItem("Mercaderias", objJson);
-*/
+
 
 // recuperacion LocalStorage
 
@@ -141,65 +129,75 @@ function BebidasOpciones(dineroCliente) {
 }
 */
 //                            EVENTOS                   // 
+const bloqueProductos = document.querySelector(".bloqueProductos");
 
-const cards = document.querySelectorAll(".card");
-cards.forEach((card)=> {
-    card.addEventListener("click", (e)=>{
-        alert("Producto agregado")
-        leerDatosProducto(e.target.parentElement);
-        e.preventDefault();
-    })
+mercaderia.forEach((producto)=>{
+    const divproducto = document.createElement("div");
+    divproducto.classList.add('card');
+    divproducto.innerHTML = `
+    <div class="cardBloque">
+        <div class="card-body">
+            <h3 class="card-title"> ${producto.marca} </h3>
+            <p class="card-text">${producto.descripcion}</p>
+            <p class="card-text"> $${producto.precio} </p>
+            <button id="boton${producto.id}" class="btn btn-warning"> Agregar al Carrito </button>
+        </div>
+    </div>
+    `;
+    bloqueProductos.appendChild(divproducto);
+
+    const agregar =  document.getElementById(`boton${producto.id}`);
+    agregar.addEventListener("click", ()=>{
+        agregarAlCarrito(producto.id);
+    });
 });
 
-let articulosCarritos = [];
+const carrito = [];
 
-function leerDatosProducto(producto){
-    const infoProducto = {
-        id: producto.querySelector(".idCard").textContent,
-        titulo: producto.querySelector(".card-title").textContent,
-        texto: producto.querySelector(".card-text").textContent
-    };
+const agregarAlCarrito = (id) => {
+    const producto = mercaderia.find((producto) => producto.id === id);
+    const productoEnCarrito = carrito.find((producto) => producto.id === id);
+    if(productoEnCarrito){
+        productoEnCarrito.cantidad++;
+    } else{
+        carrito.push(producto);
+    }
+    actualizarCarrito();
+};
 
-    articulosCarritos =[...articulosCarritos, infoProducto];
-    carrotoHTML();
+const contenedorCarrito = document.querySelector("#carrito");
+
+function actualizarCarrito() {
+    let aux = '';
+    carrito.forEach((producto) => {
+        aux += `
+                <div class="cardList">
+                    <div>
+                        <h3 class="card-title"> ${producto.marca} </h3>
+                        <p class="card-text"> $${producto.precio} </p>
+                        <button onClick = "eliminarDelCarrito(${producto.id})" class="btn btn-danger"> ✖</button>
+                    </div>
+                </div>
+                `;
+    });
+    contenedorCarrito.innerHTML = aux;
+    calcularTotalCompra();
 }
 
-const carritoAgregar = document.querySelector("#carrito");
-
-function carrotoHTML(){
-    limpiarHTML();
-    articulosCarritos.forEach((producto)=>{
-        const row = document.createElement("p");
-        row.innerHTML = `
-        <span>${producto.id}</span>
-        <h5>${producto.titulo}</h5>
-        <p>${producto.texto}</p>
-        <button class="btn btn-danger borrar" id=${producto.id}>Eliminar</button>
-        `;
-        carritoAgregar.appendChild(row);
-        Eliminar();
-    })
+const eliminarDelCarrito = (id) => {
+    const producto = carrito.find((producto) => producto.id === id);
+    carrito.splice(carrito.indexOf(producto), 1);
+    actualizarCarrito();
 };
 
-function limpiarHTML(){
-    carritoAgregar.innerHTML = "";
-};
+const totalCompra = document.querySelector("#totalCompra");
 
-// boton eliminar
-function Eliminar(producto) {
-    let eliminarCarrito = document.querySelector(".btn-danger");
-
-    if(eliminarCarrito){
-        eliminarCarrito.addEventListener("click", (e)=>{
-            eliminarCarrito = (id) => {
-                const producto = carrito.find((producto) => producto.id === e.target.id);
-                carrito.splice(carrito.indexOf(producto), 1);
-            };
-            console.log(e.target.id)
-        });
-
-    };
-    
+const calcularTotalCompra = () => {
+    let total = 0;
+    carrito.forEach((producto) => {
+        total ++;
+    });
+    totalCompra.innerHTML = total;
 };
 
 // evento tipo imput

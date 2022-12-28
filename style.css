@@ -59,13 +59,28 @@ h1{
 .list{
     margin: 20px;
 }
-.productos{
+.bloqueProductos{
     display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+.cardBloque{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+    background-color: beige;
+}
+.cardList{
+    border-bottom: 1px solid #383838;
+    padding-bottom: 15px;
+    padding-top: 15px
 }
 form label{
     color: #FFBF00;
