@@ -5,9 +5,11 @@
 
 /* Variables globales */ 
 
-//CARRITO 
+//Mercaderia 
+
 class Producto {
-    constructor(id, marca, precio, descripcion, cantidad){
+    constructor(img, id, marca, precio, descripcion, cantidad){
+        this.img = img;
         this.id = id;
         this.marca = marca;
         this.precio = precio;
@@ -15,19 +17,21 @@ class Producto {
         this.cantidad = cantidad;
     }
 }
-const producto1 = new Producto(1, "Tero Rengo", 6500, "Tero Rengo Malbec es la línea joven de la bodega donde se resaltan los aromas frutados y florales del varietal.", 5);
-const producto2 = new Producto(2, "Fernet Branca", 3500, "Fernet Branca es un licor de origen italiano específicamente en la ciudad de Milán (1845), inventado por Bernardino Branca, elaborado en función de la fórmula secreta de las distintas generaciones de la familia Branca, donde combina 27 hierbas provenientes de los cinco continentes.", 5);
-const producto3 = new Producto(3, "Santa Julia", 4500, "Es un vino suave y delicado, de color amarillo verdoso y aromas que recuerdan a durazno blanco, damasco, hierbas frescas y algunas notas cítricas como limón y pomelo.", 5);
-const producto4 = new Producto(4, "Don juan", 10500, "Color rojo profundo, con trazos violetas. Intensos aromas de frutas rojas, con matices de pimienta, especias, violeta y ciruela seca, conjugados con notas de tabaco, chocolate y vainilla.",5);
-
-const mercaderia = [producto1, producto2, producto3, producto4];
+const producto1 = new Producto(1 ,1, "Tero Rengo", 6500, "Tero Rengo Malbec es la línea joven de la bodega donde se resaltan los aromas frutados y florales del varietal.", 50);
+const producto2 = new Producto(2, 2, "Fernet Branca", 3500, "Fernet Branca es un licor de origen italiano específicamente en la ciudad de Milán (1845)", 12);
+const producto3 = new Producto(3, 3, "Santa Julia", 4500, "Es un vino suave y delicado, de color amarillo verdoso y aromas que recuerdan a durazno blanco.", 4);
+const producto4 = new Producto(4, 4, "Don juan", 10500, "Color rojo profundo, con trazos violetas. Intensos aromas de frutas rojas.",5);
+const producto5 = new Producto(5, 5, "Amalaya", 1050, "Las uvas provienen de los Valles Calchaquíes de viñedos plantados a 1800 metros de altura del mar.", 3);
+const producto6 = new Producto(6, 6, "Otro loco mas", 1259, "Otro Loco Más es un malbec frutado, de cuerpo agradable, con una interesante presencia de madera.", 20);
+const producto7 = new Producto(7, 7, "Cordero con piel de lobo", 999, "Es un Malbec joven muy bien elaborado, diferente por su aroma y sabor a frutos maduros. ", 49);
+const producto8 = new Producto(8, 8, "Sinister hand", 10500, "La Sinister Hand 2019 muestra características especiadas, oscuras y sabrosas.", 2)
+const mercaderia = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8];
 
 // LocalStorage 
 
 
 const objJson = JSON.stringify(mercaderia);
 console.log(objJson);
-
 localStorage.setItem("Mercaderias", objJson);
 
 
@@ -137,9 +141,11 @@ mercaderia.forEach((producto)=>{
     divproducto.innerHTML = `
     <div class="cardBloque">
         <div class="card-body">
+            <img src="img/productos/${producto.id}.jpg" class="card-img-top img-fluid py-3">
             <h3 class="card-title"> ${producto.marca} </h3>
             <p class="card-text">${producto.descripcion}</p>
             <p class="card-text"> $${producto.precio} </p>
+            <p class="card-text stock">Stock: ${producto.cantidad}</p>
             <button id="boton${producto.id}" class="btn btn-warning"> Agregar al Carrito </button>
         </div>
     </div>
@@ -149,6 +155,22 @@ mercaderia.forEach((producto)=>{
     const agregar =  document.getElementById(`boton${producto.id}`);
     agregar.addEventListener("click", ()=>{
         agregarAlCarrito(producto.id);
+        Toastify({
+            text: "Fue agregado al carrito",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                fontWeight:"bolder",
+                background: "#00FF2A",
+                color: "black",
+                borderRadius: "10px",
+            },
+            onClick: function(){} // Callback after click
+        }).showToast();
     });
 });
 
@@ -158,7 +180,7 @@ const agregarAlCarrito = (id) => {
     const producto = mercaderia.find((producto) => producto.id === id);
     const productoEnCarrito = carrito.find((producto) => producto.id === id);
     if(productoEnCarrito){
-        productoEnCarrito.cantidad++;
+        productoEnCarrito.cantidad ++;
     } else{
         carrito.push(producto);
     }
@@ -187,6 +209,22 @@ function actualizarCarrito() {
 const eliminarDelCarrito = (id) => {
     const producto = carrito.find((producto) => producto.id === id);
     carrito.splice(carrito.indexOf(producto), 1);
+    Toastify({
+        text: "Item eliminado",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            fontWeight:"bolder",
+            background: "#C41919",
+            color: "black",
+            borderRadius: "10px",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
     actualizarCarrito();
 };
 
@@ -199,6 +237,8 @@ const calcularTotalCompra = () => {
     });
     totalCompra.innerHTML = total;
 };
+
+const restarStock = document.querySelector(".stock");
 
 // evento tipo imput
 
