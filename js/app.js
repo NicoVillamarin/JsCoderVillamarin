@@ -204,6 +204,7 @@ function actualizarCarrito() {
     });
     contenedorCarrito.innerHTML = aux;
     calcularTotalCompra();
+    sumarCompra();
 }
 
 const eliminarDelCarrito = (id) => {
@@ -238,7 +239,59 @@ const calcularTotalCompra = () => {
     totalCompra.innerHTML = total;
 };
 
-const restarStock = document.querySelector(".stock");
+const SelecComprar = document.querySelector("#comprar");
+const comprarBoton = document.createElement("div");
+    comprarBoton.innerHTML = `
+    <button class="btn btn-warning">Comprar YA</button>
+    `;
+    SelecComprar.appendChild(comprarBoton);
+comprarBoton.addEventListener("click", ()=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Quiere realizar la compra?',
+        text: "Es una pregunta para su tranquilidad!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, Quiero comprar!',
+        cancelButtonText: 'No, no quiero comprar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+            'Gracias por su compra',
+            '¡Su compra fue confirmada!',
+            'success'
+        )
+        } else if (
+          /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+        swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'Su compra fue cancelada. Espero que nos vuelva a elegir 🎉',
+            'error'
+        )
+        }
+    });
+    carrito.splice(0, carrito.length);
+    actualizarCarrito();
+});
+
+const ValorTotalCompra = document.querySelector("#ValorTotal");
+
+const sumarCompra = () => {
+    let ValorTotal = 0;
+    carrito.forEach((producto) =>{
+        ValorTotal += producto.precio;
+    });
+    ValorTotalCompra.innerHTML = ValorTotal;
+};
 
 // evento tipo imput
 
