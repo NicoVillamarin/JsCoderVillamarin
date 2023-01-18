@@ -30,7 +30,7 @@ const producto7 = new Producto(7, 7, "Cordero con piel de lobo", 999, "Es un Mal
 const producto8 = new Producto(8, 8, "Sinister hand", 10500, "La Sinister Hand 2019 muestra características especiadas, oscuras y sabrosas.", 2)
 */
 
-fetch("/data.json")
+fetch("./data.json")
 .then(resp => resp.json())
 .then(DataMercaderia =>{
     const mercaderia = DataMercaderia;
