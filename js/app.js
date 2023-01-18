@@ -31,7 +31,9 @@ const producto8 = new Producto(8, 8, "Sinister hand", 10500, "La Sinister Hand 2
 */
 
 fetch("./data.json")
-.then(resp => resp.json())
+.then(function(response){
+    return response.json();
+})
 .then(DataMercaderia =>{
     const mercaderia = DataMercaderia;
 
