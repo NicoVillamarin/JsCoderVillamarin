@@ -43,8 +43,8 @@
               <h1>"Bienaventurados los borrachos porque ellos verán a Dios dos veces"</h1>
               <span>-Dióscoro Rojas</span>
             </div>
-            <input type="text" class="form-control" placeholder="¡A buscar bebidas!" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-secondary" type="button" id="button-addon2">🔍</button>
+            <input type="search" id="inputSearch" class="form-control" placeholder="¡A buscar bebidas!" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-secondary" type="button">🔍</button>
           </div>
         </section>
         <section class="segunda_section ">
@@ -67,6 +67,9 @@
               </ul>
             </div>
           </div>
+          <div id="resulBusqueda">
+
+          </div>
           <div class="bloqueProductos">
           
           </div>
@@ -77,15 +80,15 @@
           <form class="row g-3 form-formato" id="formulario">
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Email</label>
-              <input type="email" class="form-control" id="correo">
+              <input type="email" class="form-control" id="correo" required>
             </div>
             <div class="col-md-6">
               <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre">
+              <input type="text" class="form-control" id="nombre" required>
             </div>
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center">
               <button type="submit" class="btn btn-warning">Sign in</button>
