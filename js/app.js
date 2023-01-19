@@ -30,12 +30,10 @@ const producto7 = new Producto(7, 7, "Cordero con piel de lobo", 999, "Es un Mal
 const producto8 = new Producto(8, 8, "Sinister hand", 10500, "La Sinister Hand 2019 muestra características especiadas, oscuras y sabrosas.", 2)
 */
 
-fetch("./data.json")
-.then(function(response){
-    return response.json();
-})
-.then(DataMercaderia =>{
-    const mercaderia = DataMercaderia;
+const pedirInfo = async () => {
+    const res = await fetch("./data.json");
+    const data = await res.json();
+    const mercaderia = await data;
 
         // LocalStorage 
     
@@ -301,5 +299,6 @@ fetch("./data.json")
         `
         ;
     })
-});
 
+}
+pedirInfo();

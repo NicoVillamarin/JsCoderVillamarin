@@ -5,7 +5,7 @@
         "marca":"TERO RENGO",
         "precio":6500,
         "descripcion":"Tero Rengo Malbec es la línea joven de la bodega donde se resaltan los aromas frutados y florales del varietal.",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":2,
@@ -13,14 +13,14 @@
         "marca":"FERNET BRANCA",
         "precio":3500,
         "descripcion":"Fernet Branca es un licor de origen italiano específicamente en la ciudad de Milán (1845)",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":3,
         "id":3,
         "marca":"SANTA JULIA",
         "precio":4500,"descripcion":"Es un vino suave y delicado, de color amarillo verdoso y aromas que recuerdan a durazno blanco.",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":4,
@@ -28,7 +28,7 @@
         "marca":"DON JUAN",
         "precio":10500,
         "descripcion":"Color rojo profundo, con trazos violetas. Intensos aromas de frutas rojas.",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":5,
@@ -36,7 +36,7 @@
         "marca":"AMALAYA",
         "precio":1050,
         "descripcion":"Las uvas provienen de los Valles Calchaquíes de viñedos plantados a 1800 metros de altura del mar.",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":6,
@@ -44,7 +44,7 @@
         "marca":"OTRO LOCO MAS",
         "precio":1259,
         "descripcion":"Otro Loco Más es un malbec frutado, de cuerpo agradable, con una interesante presencia de madera.",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":7,
@@ -52,7 +52,7 @@
         "marca":"CORDERO CON PIEL DE LOBO",
         "precio":999,
         "descripcion":"Es un Malbec joven muy bien elaborado, diferente por su aroma y sabor a frutos maduros. ",
-        "cantidad":1
+        "cantidad": 1
     },
     {
         "img":8,
@@ -60,6 +60,6 @@
         "marca":"SINISTER HANDS",
         "precio":10500,
         "descripcion":"La Sinister Hand 2019 muestra características especiadas, oscuras y sabrosas.",
-        "cantidad":1
+        "cantidad": 1
         }
 ]
