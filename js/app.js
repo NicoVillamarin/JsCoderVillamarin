@@ -210,7 +210,7 @@ const pedirInfo = async () => {
     const calcularTotalCompra = () => {
         let total = 0;
         carrito.forEach((producto) => {
-            total ++;
+            total += producto.cantidad;
         });
         totalCompra.innerHTML = total;
         
